@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "myFlix-Angular-client"
+  "defaultProject": "myFlix-Angular-client",
+  "cli": {
+    "analytics": "0f283684-836a-4cb1-8014-963bda15a94b"
+  }
 }
