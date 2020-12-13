@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './auth/register/register.component';
+import { MoviesComponent } from './movies/movies.componet';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RegisterComponent } from './auth/register/register.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
+    MoviesComponent,
   ],
   imports: [
     BrowserModule,
