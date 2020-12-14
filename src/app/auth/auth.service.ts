@@ -58,6 +58,7 @@ export class AuthService {
         const token = response.token;
         const username = response.user.username;
         this.token = token;
+        this.isAuthenticated = true;
         this.authStatusListener.next(true);
         this.saveAuthData(username, token);
         this.router.navigate(['movies']);
@@ -66,6 +67,10 @@ export class AuthService {
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
+
+    if (authInformation.token === null) {
+      return;
+    }
     this.token = authInformation.token;
     this.isAuthenticated = true;
     this.authStatusListener.next(true);
