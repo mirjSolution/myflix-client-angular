@@ -14,9 +14,10 @@
         placeholder="Username"
         #usernameInput="ngModel"
         required
+        minlength="5"
       />
       <mat-error *ngIf="usernameInput.invalid"
-        >Please enter valid username.</mat-error
+        >Username must be grater than 5 characters.</mat-error
       >
     </mat-form-field>
     <mat-form-field>
@@ -28,9 +29,10 @@
         placeholder="Password"
         #passwordInput="ngModel"
         required
+        minlength="5"
       />
       <mat-error *ngIf="passwordInput.invalid"
-        >Please enter a valid password.</mat-error
+        >Password must be grater than 5 characters.</mat-error
       >
     </mat-form-field>
 
@@ -60,9 +62,7 @@
         #birthdayInput="ngModel"
         required
       />
-      <mat-error *ngIf="birthdayInput.invalid"
-        >Please enter a valid email.</mat-error
-      >
+      <mat-error *ngIf="birthdayInput.invalid">Please select date.</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">
       Register

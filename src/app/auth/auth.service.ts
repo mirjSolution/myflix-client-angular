@@ -37,11 +37,14 @@ export class AuthService {
       email: email,
       birthday: birthday,
     };
-    this.http
-      .post('https://myflix3.herokuapp.com/users', authData)
-      .subscribe((response) => {
-        console.log(response);
-      });
+    this.http.post('https://myflix3.herokuapp.com/users', authData).subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.authStatusListener.next(false);
+      }
+    );
   }
 
   login(username: string, password: string) {
@@ -54,15 +57,20 @@ export class AuthService {
         'https://myflix3.herokuapp.com/auth/login',
         authData
       )
-      .subscribe((response) => {
-        const token = response.token;
-        const username = response.user.username;
-        this.token = token;
-        this.isAuthenticated = true;
-        this.authStatusListener.next(true);
-        this.saveAuthData(username, token);
-        this.router.navigate(['movies']);
-      });
+      .subscribe(
+        (response) => {
+          const token = response.token;
+          const username = response.user.username;
+          this.token = token;
+          this.isAuthenticated = true;
+          this.authStatusListener.next(true);
+          this.saveAuthData(username, token);
+          this.router.navigate(['movies']);
+        },
+        (error) => {
+          this.authStatusListener.next(false);
+        }
+      );
   }
 
   autoAuthUser() {
