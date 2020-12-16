@@ -9,7 +9,6 @@ import { RegisterData, LoginData } from './auth.data.model';
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
-  private username: string;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -22,8 +21,9 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  getUser() {
-    return this.username;
+  getUsername() {
+    const username = localStorage.getItem('username');
+    return username;
   }
 
   getAuthStatusListener() {
@@ -52,6 +52,14 @@ export class AuthService {
     );
   }
 
+  getProfile() {
+    const username = this.getAuthData().username;
+    const token = this.getAuthData().token;
+    return this.http.get(`https://myflix3.herokuapp.com/users/${username}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
+
   login(username: string, password: string) {
     const authData: LoginData = {
       username: username,
@@ -67,7 +75,6 @@ export class AuthService {
           const token = response.token;
           const username = response.user.username;
           this.token = token;
-          this.username = username;
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
           this.saveAuthData(username, token);

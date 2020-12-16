@@ -22,8 +22,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MoviesComponent } from './movies/movies.componet';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
-import { ProfileUpdateComponent } from './profiles/profile-update/profile-update.component';
-import { ProfileFavoriteListComponent } from './profiles/profile-favorite-list/profile-favorite-list.component';
+import { ProfileFavoriteListComponent } from './auth/profile-favorite-list/profile-favorite-list.component';
+import { ProfileUpdateComponent } from './auth/profile-update/profile-update.component';
 
 @NgModule({
   declarations: [

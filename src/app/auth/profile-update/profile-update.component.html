@@ -35,7 +35,7 @@
       <input
         matInput
         name="email"
-        ngModel
+        [ngModel]="email"
         type="email"
         placeholder="Email"
         #emailInput="ngModel"
@@ -51,7 +51,7 @@
       <input
         matInput
         name="birthday"
-        ngModel
+        [ngModel]="birthday"
         type="date"
         placeholder="Birthday"
         #birthdayInput="ngModel"

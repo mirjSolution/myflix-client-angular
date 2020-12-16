@@ -5,7 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MoviesComponent } from './movies/movies.componet';
 import { AuthGuard } from './auth/auth.guard';
-import { ProfileUpdateComponent } from './profiles/profile-update/profile-update.component';
+import { ProfileUpdateComponent } from './auth/profile-update/profile-update.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
