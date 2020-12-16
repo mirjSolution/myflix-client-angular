@@ -1,0 +1,66 @@
+<mat-card>
+  <form #registerForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        name="password"
+        ngModel
+        type="password"
+        placeholder="Password"
+        #passwordInput="ngModel"
+        required
+        minlength="5"
+      />
+      <mat-error *ngIf="passwordInput.invalid"
+        >Password must be grater than 5 characters.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="confirmPassword"
+        ngModel
+        type="password"
+        placeholder="Confirm Password"
+        #confirmPasswordInput="ngModel"
+        required
+        minlength="5"
+      />
+      <mat-error *ngIf="passwordInput.invalid"
+        >Confirm Password must be grater than 5 characters.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        placeholder="Email"
+        #emailInput="ngModel"
+        required
+        email
+      />
+      <mat-error *ngIf="emailInput.invalid"
+        >Please enter a valid email.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        name="birthday"
+        ngModel
+        type="date"
+        placeholder="Birthday"
+        #birthdayInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="birthdayInput.invalid">Please select date.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Update</button>
+    <button mat-raised-button color="warn" type="submit">Unregister</button>
+  </form>
+</mat-card>
+<app-profile-favorite-list></app-profile-favorite-list>

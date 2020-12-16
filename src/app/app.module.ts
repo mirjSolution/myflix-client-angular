@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MoviesComponent } from './movies/movies.componet';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { ProfileUpdateComponent } from './profiles/profile-update/profile-update.component';
+import { ProfileFavoriteListComponent } from './profiles/profile-favorite-list/profile-favorite-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { ErrorComponent } from './error/error.component';
     LoginComponent,
     RegisterComponent,
     MoviesComponent,
+    ProfileUpdateComponent,
+    ProfileFavoriteListComponent,
     ErrorComponent,
   ],
   imports: [
@@ -44,6 +49,7 @@ import { ErrorComponent } from './error/error.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
     FormsModule,
   ],
   providers: [

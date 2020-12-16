@@ -1,7 +1,18 @@
 <mat-toolbar color="primary">
   <span>MyFlix</span>
+
   <span class="spacer"></span>
   <ul>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/profile" routerLinkActive="mat-accent"
+        >Profile</a
+      >
+    </li>
+    <li>
+      <a mat-button routerLink="/movies" routerLinkActive="mat-accent"
+        >Movies</a
+      >
+    </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/" routerLinkActive="mat-accent">LogIn</a>
     </li>
@@ -10,6 +21,7 @@
         >Register</a
       >
     </li>
+
     <li *ngIf="userIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
