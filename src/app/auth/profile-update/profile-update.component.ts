@@ -17,31 +17,31 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   birthday: string;
   buttonType: string;
   favorites = [];
+  username = localStorage.getItem('username');
+  token = localStorage.getItem('token');
   data: { message: string };
 
   private profileSub: Subscription;
 
   constructor(public authService: AuthService, private dialog: MatDialog) {}
 
-  onDeleteFavorite(movieName) {
-    this.authService.getProfile().subscribe((profile: any) => {
-      this.favorites = profile.favoriteMovies;
-    });
-    this.dialog.open(ErrorComponent, {
-      data: { message: 'Movie successfully removed from list!' },
-    });
-
-    this.authService.deleteFavorite(movieName);
-  }
-
   ngOnInit() {
     this.profileSub = this.authService
-      .getProfile()
+      .getProfile(this.username, this.token)
       .subscribe((profile: any) => {
         this.email = profile.email;
         this.birthday = profile.birthday.slice(0, 10);
         this.favorites = profile.favoriteMovies;
       });
+  }
+
+  onDeleteFavorite(movieName) {
+    this.dialog.open(ErrorComponent, {
+      data: { message: 'Movie successfully removed from list!' },
+    });
+    this.authService.deleteFavorite(movieName).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   onDeleteProfile() {

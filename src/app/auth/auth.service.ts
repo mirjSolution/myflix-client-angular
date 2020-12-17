@@ -61,9 +61,7 @@ export class AuthService {
     );
   }
 
-  getProfile() {
-    const username = this.getAuthData().username;
-    const token = this.getAuthData().token;
+  getProfile(username, token) {
     return this.http.get(`https://myflix3.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -119,11 +117,10 @@ export class AuthService {
 
   deleteFavorite(movie: string) {
     const username = localStorage.getItem('username');
-    return this.http
-      .delete(`https://myflix3.herokuapp.com/users/${username}/movies/${movie}`)
-      .subscribe(() => {
-        this.getProfile();
-      });
+    const token = localStorage.getItem('token');
+    return this.http.delete(
+      `https://myflix3.herokuapp.com/users/${username}/movies/${movie}`
+    );
   }
 
   deleteProfile(username: string) {

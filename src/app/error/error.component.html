@@ -1,6 +1,20 @@
 <h1 mat-dialog-title>MyFlix</h1>
 <div mat-dialog-content>
-  <p class="mat-body-1">{{ data?.message }}</p>
+  <p *ngIf="data.message" class="mat-body-1">{{ data?.message }}</p>
+  <p *ngIf="data.genreName" class="mat-body-1">GENRE: {{ data?.genreName }}</p>
+  <p *ngIf="data.genreDesc" class="mat-body-1">
+    DESCRIPTION: {{ data?.genreDesc }}
+  </p>
+  <p *ngIf="data.directorName" class="mat-body-1">
+    NAME: {{ data?.directorName }}
+  </p>
+  <p *ngIf="data.directorBio" class="mat-body-1">
+    BIO: {{ data?.directorBio }}
+  </p>
+  <p *ngIf="data.directorBirth" class="mat-body-1">
+    BIRTH: {{ data?.directorBirth }}
+  </p>
+  <p *ngIf="data.synopsis" class="mat-body-1">SYNOPSIS: {{ data?.synopsis }}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>OK</button>

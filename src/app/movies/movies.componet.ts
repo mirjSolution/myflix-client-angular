@@ -12,7 +12,7 @@ import { ErrorComponent } from 'src/app/error/error.component';
 })
 export class MoviesComponent implements OnInit {
   private token: string;
-  public movies: any[] = [];
+  movies: any[] = [];
 
   constructor(
     private http: HttpClient,
@@ -44,5 +44,23 @@ export class MoviesComponent implements OnInit {
       .subscribe((result: any) => {
         this.movies = result;
       });
+  }
+
+  onViewSynopsis(synopsis) {
+    this.dialog.open(ErrorComponent, {
+      data: { synopsis: synopsis },
+    });
+  }
+
+  onViewDirector(name, bio, birth) {
+    this.dialog.open(ErrorComponent, {
+      data: { directorName: name, directorBio: bio, directorBirth: birth },
+    });
+  }
+
+  onViewGenre(name, desc) {
+    this.dialog.open(ErrorComponent, {
+      data: { genreName: name, genreDesc: desc },
+    });
   }
 }
