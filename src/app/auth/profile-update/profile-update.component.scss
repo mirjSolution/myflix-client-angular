@@ -9,8 +9,22 @@ button {
 mat-accordion {
   display: block;
   margin-top: 1rem;
+}
 
-  .info-text {
-    text-align: center;
+mat-expansion-panel {
+  p {
+    display: flex;
+    justify-content: space-between;
   }
+
+  mat-icon {
+    margin-left: 2rem;
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.info-text {
+  margin-top: 1rem;
+  text-align: center;
 }

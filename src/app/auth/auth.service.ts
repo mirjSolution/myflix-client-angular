@@ -117,6 +117,15 @@ export class AuthService {
       });
   }
 
+  deleteFavorite(movie: string) {
+    const username = localStorage.getItem('username');
+    this.http
+      .delete(`https://myflix3.herokuapp.com/users/${username}/movies/${movie}`)
+      .subscribe(() => {
+        this.router.navigate(['movies']);
+      });
+  }
+
   deleteProfile(username: string) {
     this.http
       .delete(`https://myflix3.herokuapp.com/users/${username}`)
