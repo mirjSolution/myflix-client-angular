@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
 import { RegisterData, LoginData } from './auth.data.model';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -11,7 +13,11 @@ export class AuthService {
   private token: string;
   private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   getToken() {
     return this.token;
@@ -44,6 +50,9 @@ export class AuthService {
     };
     this.http.post('https://myflix3.herokuapp.com/users', authData).subscribe(
       () => {
+        this.dialog.open(ErrorComponent, {
+          data: { message: 'Profile Successfully Created!' },
+        });
         this.router.navigate(['/']);
       },
       (error) => {
@@ -84,6 +93,36 @@ export class AuthService {
           this.authStatusListener.next(false);
         }
       );
+  }
+
+  updateProfile(
+    username: string,
+    email: string,
+    password: string,
+    birthday: Date
+  ) {
+    const profileUpdate: RegisterData = {
+      username: username,
+      email: email,
+      password: password,
+      birthday: birthday,
+    };
+    this.http
+      .put(`https://myflix3.herokuapp.com/users/${username}`, profileUpdate)
+      .subscribe(() => {
+        this.router.navigate(['/movies']);
+        this.dialog.open(ErrorComponent, {
+          data: { message: 'Profile Successfully Updated!' },
+        });
+      });
+  }
+
+  deleteProfile(username: string) {
+    this.http
+      .delete(`https://myflix3.herokuapp.com/users/${username}`)
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
   }
 
   autoAuthUser() {

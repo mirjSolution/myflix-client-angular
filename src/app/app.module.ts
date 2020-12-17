@@ -22,7 +22,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MoviesComponent } from './movies/movies.componet';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
-import { ProfileFavoriteListComponent } from './auth/profile-favorite-list/profile-favorite-list.component';
+
 import { ProfileUpdateComponent } from './auth/profile-update/profile-update.component';
 
 @NgModule({
@@ -33,7 +33,6 @@ import { ProfileUpdateComponent } from './auth/profile-update/profile-update.com
     RegisterComponent,
     MoviesComponent,
     ProfileUpdateComponent,
-    ProfileFavoriteListComponent,
     ErrorComponent,
   ],
   imports: [

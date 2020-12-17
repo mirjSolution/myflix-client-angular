@@ -20,8 +20,13 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'An unknown error occurred!';
-        console.log(error);
-        if (error.error === 'Invalid Credential') {
+        if (error.error.text) {
+          let errorText = error.error.text.split(' ');
+          const error1 = errorText.includes('deleted.');
+          if (error1) {
+            errorMessage = 'Profile successfully deleted';
+          }
+        } else if (error.error.message === 'Invalid Credential') {
           errorMessage = 'Invalid Credential';
         } else if (error.status === 400) {
           errorMessage = 'Username already exists';
