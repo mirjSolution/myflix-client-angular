@@ -20,7 +20,10 @@ npm install
 ng serve
 ```
 
-## App Info
+## Demo
+
+The APP is live at [mirjsolution.github.io/myflix-clent-angular](https://mirjsolution.github.io/myflix-client-angular/)
 
 - Version: 1.0.0
+- License: MIT
 - Author: Rico John Dato-on
