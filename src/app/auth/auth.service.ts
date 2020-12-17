@@ -110,7 +110,7 @@ export class AuthService {
     this.http
       .put(`https://myflix3.herokuapp.com/users/${username}`, profileUpdate)
       .subscribe(() => {
-        this.router.navigate(['/movies']);
+        this.router.navigate(['movies']);
         this.dialog.open(ErrorComponent, {
           data: { message: 'Profile Successfully Updated!' },
         });
@@ -119,10 +119,10 @@ export class AuthService {
 
   deleteFavorite(movie: string) {
     const username = localStorage.getItem('username');
-    this.http
+    return this.http
       .delete(`https://myflix3.herokuapp.com/users/${username}/movies/${movie}`)
       .subscribe(() => {
-        this.router.navigate(['movies']);
+        this.getProfile();
       });
   }
 

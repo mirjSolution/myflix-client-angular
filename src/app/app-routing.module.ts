@@ -15,7 +15,7 @@ const routes: Routes = [
     component: ProfileUpdateComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'movies', component: MoviesComponent },
+  { path: 'movies', component: MoviesComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

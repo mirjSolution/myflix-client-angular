@@ -11,7 +11,7 @@
         >Profile</a
       >
     </li>
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/movies" routerLinkActive="mat-accent"
         >Movies</a
       >

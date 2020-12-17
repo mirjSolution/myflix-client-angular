@@ -23,6 +23,17 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
 
   constructor(public authService: AuthService, private dialog: MatDialog) {}
 
+  onDeleteFavorite(movieName) {
+    this.authService.getProfile().subscribe((profile: any) => {
+      this.favorites = profile.favoriteMovies;
+    });
+    this.dialog.open(ErrorComponent, {
+      data: { message: 'Movie successfully removed from list!' },
+    });
+
+    this.authService.deleteFavorite(movieName);
+  }
+
   ngOnInit() {
     this.profileSub = this.authService
       .getProfile()
@@ -32,25 +43,7 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
         this.favorites = profile.favoriteMovies;
       });
   }
-  ngOnDestroy() {
-    this.profileSub.unsubscribe();
-  }
 
-  onDeleteFavorite(movieName) {
-    this.authService.deleteFavorite(movieName);
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.authService.getProfile();
-    this.dialog.open(ErrorComponent, {
-      data: { message: 'Movie successfully removed from list!' },
-    });
-  }
   onDeleteProfile() {
     const username = localStorage.getItem('username');
     this.authService.deleteProfile(username);
@@ -75,5 +68,9 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
         form.value.birthday
       );
     }
+  }
+
+  ngOnDestroy() {
+    this.profileSub.unsubscribe();
   }
 }
